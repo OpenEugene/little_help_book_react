@@ -38,3 +38,5 @@ class ProviderNav extends Component {
 		);
 	}
 }
+
+export default ProviderNav;

@@ -2,12 +2,14 @@ import React from 'react';
 import NavOption from './NavOption'
 
 const CityBox = (props) => {
-	const {cities, citySelectEvent} = props
+	const {cities, citySelectEvent} = props;
 	return (
         <select class="breadcrumb city" id="citySelect" onChange={citySelectEvent}>
             {
-            cities.map((city, index) => <NavOption obj={city} index={index} />);
-            }
+            cities.map((city, index) => <NavOption obj={city} key={index} />)
+        	}
         </select>
 	);
 }
+
+export default CityBox;

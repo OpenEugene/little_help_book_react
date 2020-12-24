@@ -6,3 +6,5 @@ const NavOption = (props) => {
 		<option value={id} index={props.index}>{name}</option>
 	);
 }
+
+export default NavOption;

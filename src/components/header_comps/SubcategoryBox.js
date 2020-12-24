@@ -7,8 +7,10 @@ const SubcategoryBox = (props) => {
 	return (
 		<select class="breadcrumb subcategory-menu" id="subcatSelect" onChange={subcategorySelectEvent}>
             {
-            subcats.map((subcat, index) => <NavOption obj={subcat} index={index} />);
+            subcats.map((subcat, index) => <NavOption obj={subcat} key={index} />)
             }
         </select>
 	)
 }
+
+export default SubcategoryBox;

@@ -8,8 +8,10 @@ const CategoryBox = (props) => {
 		<select class="breadcrumb category" id="catSelect"
 			onChange={categorySelectEvent}>
             {
-            cats.map((cat, index) => <NavOption obj={cat} index={index} />)
+            cats.map((cat, index) => <NavOption obj={cat} key={index} />)
             }
         </select>
 	);
 }
+
+export default CategoryBox;

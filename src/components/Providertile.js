@@ -26,3 +26,5 @@ const ProviderTile = (props) => {
         </div>
 	);
 }
+
+export default ProviderTile;
