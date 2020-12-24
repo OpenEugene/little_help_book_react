@@ -5,7 +5,7 @@ const SubcategoryBox = (props) => {
 	const {subcategories, subcategorySelectEvent} = props;
 	const [subcats, setSubcats] = useState(subcategories);
 	return (
-		<select class="breadcrumb subcategory-menu" id="subcatSelect" onChange={subcategorySelectEvent}>
+		<select className="breadcrumb subcategory-menu" id="subcatSelect" onChange={subcategorySelectEvent}>
             {
             subcats.map((subcat, index) => <NavOption obj={subcat} key={index} />)
             }

@@ -23,8 +23,8 @@ class ProviderNav extends Component {
 	render() {
 		const { cities, categories, subcategories } = this.props;
 		return (
-			<div class="breadcrumb-box">
-	            <div class="find-help">Find help in</div>
+			<div className="breadcrumb-box">
+	            <div className="find-help">Find help in</div>
 
 	            <CityBox cities={cities} 
 	            	citySelectEvent={this.citySelectEvent} />
