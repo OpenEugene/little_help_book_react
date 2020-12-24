@@ -1,4 +1,4 @@
-import PageHeader from './components/pageheadcomps/PageHeader';
+import PageHeader from './components/header_comps/PageHeader';
 import './App.css';
 
 function dummyCities() {
