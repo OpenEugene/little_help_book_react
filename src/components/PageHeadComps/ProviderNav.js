@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import CityBox from './CityBox';
+import CategoryBox from './CategoryBox';
+import SubcategoryBox from './SubcategoryBox';
 
 class ProviderNav extends Component {
 	constructor(props) {
