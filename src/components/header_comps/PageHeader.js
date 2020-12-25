@@ -6,7 +6,7 @@ class PageHeader extends Component {
 		const { cities, categories, subcategories } = this.props;
 		return (
 			<header>
-	            <a className="homepage-link" href="index.html">
+	            <a className="homepage-link">
 	                <img className="desktop-logo" src="../images/white-bird-on-black.png"
 	                	alt="White Bird Clinic" width="42" height="42" />
 	                <h1 className="little-help-book">Little Help Book</h1>

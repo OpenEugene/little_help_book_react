@@ -4,8 +4,18 @@ import CategoryBox from './CategoryBox';
 import SubcategoryBox from './SubcategoryBox';
 
 class ProviderNav extends Component {
+	cityboxId = "citySelect";
+	catboxId = "catSelect";
+	subcatboxId = "subcatSelect";
+	cityboxMobId = "citySelect-mobile";
+
 	constructor(props) {
 		super(props);
+		this.state = {
+			availableProviders: props.providers,
+			availableCategories: props.categories,
+			availableSubcategories: props.subcategories 
+		}
 	}
 
 	citySelectEvent() {

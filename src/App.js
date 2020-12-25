@@ -20,15 +20,32 @@ function dummyCategories() {
 function dummySubcategories() {
 	return [
 		{id: "rec1", name: "Bedding"},
-		{id: "rec2", name: "Pro Bono"},
-		{id: "rec3", name: "Adult Education"}
+		{id: "rec2", name: "Food"},
+		{id: "rec3", name: "Pro Bono"},
+		{id: "rec4", name: "Immigration Representation"},
+		{id: "rec5", name: "Adult Education"}
+	];
+}
+
+function dummyProviders() {
+	return [
+		{id: "rec1", name: "Eugene Mission"},
+		{id: "rec2", name: "Lane Food Pantry"},
+		{id: "rec3", name: "James Law Firm"},
+		{id: "rec4", name: "Cody Law Firm"},
+		{id: "rec5", name: "Lane Community College"},
+		{id: "rec6", name: "Jimmys Soup Kitchen"},
+		{id: "rec7", name: "Creswell Community College"}
 	];
 }
 
 function App() {
   return (
     <div className="App">
-      <PageHeader cities={dummyCities()} categories={dummyCategories()} subcategories={dummySubcategories()} />
+      <PageHeader cities={dummyCities()}
+      	categories={dummyCategories()} 
+      	subcategories={dummySubcategories()}
+      	providers={dummyProviders()} />
     </div>
   );
 }
