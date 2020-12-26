@@ -39,6 +39,10 @@ function dummyProviders() {
 	];
 }
 
+function updateDom() {
+
+}
+
 function App() {
   return (
     <div className="App">
@@ -46,6 +50,7 @@ function App() {
       	categories={dummyCategories()} 
       	subcategories={dummySubcategories()}
       	providers={dummyProviders()} />
+      	
     </div>
   );
 }

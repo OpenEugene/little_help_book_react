@@ -31,7 +31,8 @@ class ProviderNav extends Component {
 	}
 
 	render() {
-		const { cities, categories, subcategories } = this.props;
+		const { cities } = this.props;
+		const { availableCategories, availableSubcategories } = this.state;
 		return (
 			<div className="breadcrumb-box">
 	            <div className="find-help">Find help in</div>
@@ -39,10 +40,10 @@ class ProviderNav extends Component {
 	            <CityBox cities={cities} 
 	            	citySelectEvent={this.citySelectEvent} />
 
-	            <CategoryBox categories={categories} 
+	            <CategoryBox categories={availableCategories} 
 	            	categorySelectEvent={this.categorySelectEvent} />
 
-            	<SubcategoryBox subcategories={subcategories} 
+            	<SubcategoryBox subcategories={availableSubcategories} 
             		subcategorySelectEvent={this.subcategorySelectEvent} />
 	        </div>
 		);
