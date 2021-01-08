@@ -48,6 +48,7 @@ function App() {
 	let [availCats, setcats] = useState(categories);
 	let [availSubcats, setsubcats] = useState(subcategories);
 	let [availPvds, setpvds] = useState(providers);
+	let [selectedItems, selectedItemsFunc] = useState({'NA'})
 	return (
 		<div className="App">
 			<PageHeader cities={cities}
@@ -58,7 +59,9 @@ function App() {
 				providers={providers}
 				categorySetFunc={setcats}
 				subcategorySetFunc={setsubcats}
-				providerSetFunc={setpvds} />
+				providerSetFunc={setpvds}
+				selectedItems={selectedItems}
+				selectedItemsFunc={selectedItemsFunc} />
 			
 		</div>
 	);

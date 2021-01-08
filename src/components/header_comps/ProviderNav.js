@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import CityBox from './CityBox';
 import CategoryBox from './CategoryBox';
 import SubcategoryBox from './SubcategoryBox';
@@ -16,7 +16,9 @@ const ProviderNav = (props) => {
 		  providers, 
 		  categoryFunc, 
 		  subcategoryFunc,
-		  providerFunc } = props;
+		  providerFunc,
+		  selectedItems,
+		  selectedItemsFunc } = props;
 
 	let isZeroOrEmpty = (v) => {
 		return v === [] || v === null || v === 0 || v === "";
@@ -51,10 +53,38 @@ const ProviderNav = (props) => {
 		return catSubcats;
 	}
 
+	let filterProvidersByCity = (prvdArray, city) => {
+		let prvds =
+			prvdArray.filter(p => isZeroOrEmpty(p.city) ? true : p.city === city);
+		console.log(prvds);
+		return prvds;
+	}
+
+	let filterProvidersByCategory = (prvdArray, cat) => {
+		let prvds =
+			prvdArray.filter(p => 
+				p.subcategories.map(psc => subcategories.find(sc => sc.id === psc))
+					.map(sc => categories.find(c => c.id === sc.category))
+			);
+		console.log(prvds);
+		return prvds;
+	}
+
+	let filterProvidersBySubcategory = (prvdArray, subcat) => {
+		let prvds =
+			prvdArray.filter(p => p.subcategories.includes(subcat));
+		console.log(prvds);
+		return prvds;
+	}
+
 	// The event that's called when the cityBox value changes.
 	let citySelectEvent = (city) => {
-		categoryFunc(filterCategories(city));
 
+		categoryFunc(filterCategories(city));
+		providerFunc(filterProvidersByCity(
+			filterProvidersByCategory(
+				filterProvidersBySubcategory(), category
+				), city));
 	}
 
 	let categorySelectEvent = (cat) => {
@@ -70,13 +100,13 @@ const ProviderNav = (props) => {
             <div className="find-help">Find help in</div>
 
             <CityBox cities={cities} 
-            	citySelectEvent={(value) => { this.citySelectEvent(value); }} />
+            	citySelectEvent={(value) => { citySelectEvent(value); }} />
 
             <CategoryBox categories={availableCategories} 
-            	categorySelectEvent={(value) => { this.categorySelectEvent(value); }} />
+            	categorySelectEvent={(value) => { categorySelectEvent(value); }} />
 
         	<SubcategoryBox subcategories={availableSubcategories}
-        		subcategorySelectEvent={(value) => { this.subcategorySelectEvent(value); }} />
+        		subcategorySelectEvent={(value) => { subcategorySelectEvent(value); }} />
         </div>
 	);
 }
