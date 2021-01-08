@@ -61,7 +61,7 @@ function App() {
 				subcategorySetFunc={setsubcats}
 				providerSetFunc={setpvds}
 				selectedItems={selectedItems}
-				selectedItemsFunc={selectedItemsFunc} />
+				selectedItemsSetFunc={selectedItemsFunc} />
 			
 		</div>
 	);

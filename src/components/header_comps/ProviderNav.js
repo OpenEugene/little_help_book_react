@@ -14,11 +14,11 @@ const ProviderNav = (props) => {
 		  subcategories,
 		  availableSubcategories,
 		  providers, 
-		  categoryFunc, 
-		  subcategoryFunc,
-		  providerFunc,
+		  categorySetFunc, 
+		  subcategorySetFunc,
+		  providerSetFunc,
 		  selectedItems,
-		  selectedItemsFunc } = props;
+		  selectedItemsSetFunc } = props;
 
 	let isZeroOrEmpty = (v) => {
 		return v === [] || v === null || v === 0 || v === "";
@@ -78,7 +78,7 @@ const ProviderNav = (props) => {
 	}
 
 	let filterProviderFunc = () => {
-		providerFunc(filterProvidersByCity(
+		providerSetFunc(filterProvidersByCity(
 			filterProvidersByCategory(
 				filterProvidersBySubcategory(
 					providers, selectedItems.subcategory), 
@@ -87,25 +87,25 @@ const ProviderNav = (props) => {
 
 	// The event that's called when the cityBox value changes.
 	let citySelectEvent = (city) => {
-		newItems = selectedItems;
+		let newItems = selectedItems;
 		newItems.city = city;
-		selectedItemsFunc(newItems);
-		categoryFunc(filterCategories(city));
+		selectedItemsSetFunc(newItems);
+		categorySetFunc(filterCategories(city));
 		filterProviderFunc();
 	}
 
 	let categorySelectEvent = (cat) => {
-		newItems = selectedItems;
+		let newItems = selectedItems;
 		newItems.category = cat;
-		selectedItemsFunc(newItems);
-		subcategoryFunc(filterSubcategories(cat));
+		selectedItemsSetFunc(newItems);
+		subcategorySetFunc(filterSubcategories(cat));
 		filterProviderFunc();
 	}
 
 	let subcategorySelectEvent = (subcat) => {
-		newItems = selectedItems;
+		let newItems = selectedItems;
 		newItems.subcategory = subcat;
-		selectedItemsFunc(newItems);
+		selectedItemsSetFunc(newItems);
 		filterProviderFunc();
 	}
 
