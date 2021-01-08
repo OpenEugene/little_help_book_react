@@ -19,6 +19,7 @@ const ProviderNav = (props) => {
 		  providerSetFunc,
 		  selectedItems,
 		  selectedItemsSetFunc } = props;
+	console.log(props);
 
 	let isZeroOrEmpty = (v) => {
 		return v === [] || v === null || v === 0 || v === "";
@@ -33,7 +34,7 @@ const ProviderNav = (props) => {
 				.map(p => p.subcategories)
 				// reduce the provider subcategory id arrays (pscArray) into one array with no duplicates
 				.reduce((acc, pscArray) => {
-					pscArray.foreach(psc => { if (!acc.includes(psc)) {acc.push(psc)} });
+					pscArray.forEach(psc => { if (!acc.includes(psc)) {acc.push(psc)} });
 					return acc;
 				}, [])
 				// get the parent category ids of each subcategory
@@ -54,35 +55,40 @@ const ProviderNav = (props) => {
 	}
 
 	let filterProvidersByCity = (prvdArray, city) => {
-		let prvds =
-			prvdArray.filter(p => isZeroOrEmpty(p.city) ? true : p.city === city);
+		let prvds = (city !== 'NA') ?
+			prvdArray.filter(p => isZeroOrEmpty(p.city) ? true : p.city === city) :
+			prvdArray;
 		console.log(prvds);
 		return prvds;
 	}
 
 	let filterProvidersByCategory = (prvdArray, cat) => {
-		let prvds =
+		let prvds = (cat !== 'NA') ?
 			prvdArray.filter(p => 
 				p.subcategories.map(psc => subcategories.find(sc => sc.id === psc))
 					.map(sc => categories.find(c => c.id === sc.category))
-			);
+			) : prvdArray;
 		console.log(prvds);
 		return prvds;
 	}
 
 	let filterProvidersBySubcategory = (prvdArray, subcat) => {
-		let prvds =
-			prvdArray.filter(p => p.subcategories.includes(subcat));
+		let prvds = (subcat !== 'NA') ?
+			prvdArray.filter(p => p.subcategories.includes(subcat)) :
+			prvdArray;
 		console.log(prvds);
 		return prvds;
 	}
 
 	let filterProviderFunc = () => {
-		providerSetFunc(filterProvidersByCity(
-			filterProvidersByCategory(
-				filterProvidersBySubcategory(
-					providers, selectedItems.subcategory), 
-				selectedItems.category), selectedItems.city));
+		providerSetFunc(
+			filterProvidersByCity(
+				filterProvidersByCategory(
+					filterProvidersBySubcategory(providers, 
+						selectedItems.subcategory),
+					selectedItems.category), 
+				selectedItems.city)
+			);
 	}
 
 	// The event that's called when the cityBox value changes.
@@ -114,13 +120,13 @@ const ProviderNav = (props) => {
             <div className="find-help">Find help in</div>
 
             <CityBox cities={cities} 
-            	citySelectEvent={(value) => { citySelectEvent(value); }} />
+            	citySelectEvent={(e) => { citySelectEvent(e.target.value); }} />
 
             <CategoryBox categories={availableCategories} 
-            	categorySelectEvent={(value) => { categorySelectEvent(value); }} />
+            	categorySelectEvent={(e) => { categorySelectEvent(e.target.value); }} />
 
         	<SubcategoryBox subcategories={availableSubcategories}
-        		subcategorySelectEvent={(value) => { subcategorySelectEvent(value); }} />
+        		subcategorySelectEvent={(e) => { subcategorySelectEvent(e.target.value); }} />
         </div>
 	);
 }
