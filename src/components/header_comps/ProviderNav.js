@@ -77,22 +77,36 @@ const ProviderNav = (props) => {
 		return prvds;
 	}
 
-	// The event that's called when the cityBox value changes.
-	let citySelectEvent = (city) => {
-
-		categoryFunc(filterCategories(city));
+	let filterProviderFunc = () => {
 		providerFunc(filterProvidersByCity(
 			filterProvidersByCategory(
-				filterProvidersBySubcategory(), category
-				), city));
+				filterProvidersBySubcategory(
+					providers, selectedItems.subcategory), 
+				selectedItems.category), selectedItems.city));
+	}
+
+	// The event that's called when the cityBox value changes.
+	let citySelectEvent = (city) => {
+		newItems = selectedItems;
+		newItems.city = city;
+		selectedItemsFunc(newItems);
+		categoryFunc(filterCategories(city));
+		filterProviderFunc();
 	}
 
 	let categorySelectEvent = (cat) => {
-
+		newItems = selectedItems;
+		newItems.category = cat;
+		selectedItemsFunc(newItems);
+		subcategoryFunc(filterSubcategories(cat));
+		filterProviderFunc();
 	}
 
 	let subcategorySelectEvent = (subcat) => {
-		
+		newItems = selectedItems;
+		newItems.subcategory = subcat;
+		selectedItemsFunc(newItems);
+		filterProviderFunc();
 	}
 
 	return (
