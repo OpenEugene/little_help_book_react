@@ -6,21 +6,21 @@ const ProviderTile = (props) => {
 		hours, languageHelp, wheelchair
 	} = props.provider;
 	return (
-		<div class="tile" id={id}>
-            <div class="provider-name">{name}</div>
-            <div class="provider-address">{(address) ? address : "No address provided"}</div>
-            <div class="provider-phone">{(phone) ? phone : "No phone number provided"}</div>
-            <div class="provider-website">
+		<div className="tile" id={id}>
+            <div className="provider-name">{name}</div>
+            <div className="provider-address">{(address) ? address : "No address provided"}</div>
+            <div className="provider-phone">{(phone) ? phone : "No phone number provided"}</div>
+            <div className="provider-website">
                 {(url) ? <a target="_blank" href={url}>{url}</a> : "No website provided"}
             </div>
-            <div class="provider-description">
+            <div className="provider-description">
                 {(description) ? description : "No description provided"}
             </div>
-            <div class="last-line">
-                <div class="provider-hours">Hours: {(hours) ? hours : "No hours provided"}</div>
-                <div class="legend-icons">
-                    {languageHelp && <i class='ri-earth-fill'></i>}
-                    {wheelchair && <i class='ri-wheelchair-fill'></i>}
+            <div className="last-line">
+                <div className="provider-hours">Hours: {(hours) ? hours : "No hours provided"}</div>
+                <div className="legend-icons">
+                    {languageHelp && <i className='ri-earth-fill'></i>}
+                    {wheelchair && <i className='ri-wheelchair-fill'></i>}
                 </div>
             </div>
         </div>

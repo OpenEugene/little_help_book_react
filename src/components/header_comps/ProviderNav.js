@@ -27,29 +27,34 @@ const ProviderNav = (props) => {
 
 	// Used in citySelectEvent to populate categoryBox with in-city categories.
 	let filterCategories = (city) => {
-		let cityCats =
+		let cityCats = (city !== 'NA') ?
 			// get the providers in the city.
 			providers.filter(p => isZeroOrEmpty(p.city) ? true : p.city === city)
-				// pull out the subcategory id array out of each provider record.
-				.map(p => p.subcategories)
-				// reduce the provider subcategory id arrays (pscArray) into one array with no duplicates
-				.reduce((acc, pscArray) => {
-					pscArray.forEach(psc => { if (!acc.includes(psc)) {acc.push(psc)} });
-					return acc;
-				}, [])
-				// get the parent category ids of each subcategory
-				.map(psc => subcategories.find(sc => sc.id === psc).category)
-				// remove duplicate category ids
-				.reduce((acc, cid) => { if (!acc.includes(cid)) {acc.push(cid)} return acc; }, [])
-				// finally, retrieve the category records for each category id
-				.map(cid => categories.find(c => c.id === cid));
+				// find the relative category to the provider field.
+				.map(p => categories.find(c => c.id === p.category))
+				.reduce((acc, c) => { if (!acc.includes(c)) {acc.push(c)} return acc; }, []) : 
+			categories;
 		console.log(cityCats);
 		return cityCats;
 	}
 
+	// Used in citySelectEvent to populate the subcategoryBox with related subcategories
+	let filterSubcategoriesCity = (city) => {
+		let subcats = (city !== 'NA') ?
+			categories.map(c => subcategories.filter(sc => sc.category === c.id))
+			.reduce((acc, scArray) => {
+				scArray.forEach(sc => { if (acc.includes(sc.id)) {acc.push(sc)} });
+				return acc
+			}, []) : subcategories;
+		console.log(subcats);
+		return subcats;
+	}
+
 	// Used in categorySelectEvent to populate the subcategoryBox with child subcategories.
 	let filterSubcategories = (cat) => {
-		let catSubcats = subcategories.filter(sc => sc.category === cat);
+		let catSubcats = (cat !== 'NA') ? 
+			subcategories.filter(sc => sc.category === cat) : 
+			subcategories;
 		console.log(catSubcats);
 		return catSubcats;
 	}
@@ -93,16 +98,17 @@ const ProviderNav = (props) => {
 
 	// The event that's called when the cityBox value changes.
 	let citySelectEvent = (city) => {
-		let newItems = selectedItems;
-		newItems.city = city;
+		let newItems = {city: city, category: 'NA', subcategory: 'NA'};
 		selectedItemsSetFunc(newItems);
 		categorySetFunc(filterCategories(city));
+		subcategorySetFunc(filterSubcategoriesCity(city));
 		filterProviderFunc();
 	}
 
 	let categorySelectEvent = (cat) => {
 		let newItems = selectedItems;
 		newItems.category = cat;
+		newItems.subcategory = 'NA';
 		selectedItemsSetFunc(newItems);
 		subcategorySetFunc(filterSubcategories(cat));
 		filterProviderFunc();
