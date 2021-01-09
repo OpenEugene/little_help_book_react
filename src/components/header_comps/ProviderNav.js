@@ -40,12 +40,13 @@ const ProviderNav = (props) => {
 
 	// Used in citySelectEvent to populate the subcategoryBox with related subcategories
 	let filterSubcategoriesCity = (city) => {
+		console.log(availableCategories);
 		let subcats = (city !== 'NA') ?
-			categories.map(c => subcategories.filter(sc => sc.category === c.id))
-			.reduce((acc, scArray) => {
-				scArray.forEach(sc => { if (acc.includes(sc.id)) {acc.push(sc)} });
-				return acc
-			}, []) : subcategories;
+			availableCategories.map(c => subcategories.filter(sc => sc.category === c.id))
+				.reduce((acc, scArray) => {
+					scArray.forEach(sc => { if (!acc.includes(sc.id)) {acc.push(sc)} });
+					return acc
+				}, []) : subcategories;
 		console.log(subcats);
 		return subcats;
 	}
