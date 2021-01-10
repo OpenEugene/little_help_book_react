@@ -11,7 +11,7 @@ const ProviderTile = (props) => {
             <div className="provider-address">{(address) ? address : "No address provided"}</div>
             <div className="provider-phone">{(phone) ? phone : "No phone number provided"}</div>
             <div className="provider-website">
-                {(url) ? <a target="_blank" href={url}>{url}</a> : "No website provided"}
+                {(url) ? <a target="_blank" rel="noreferrer" href={url}>{url}</a> : "No website provided"}
             </div>
             <div className="provider-description">
                 {(description) ? description : "No description provided"}

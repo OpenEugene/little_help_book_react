@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ProviderNav from './ProviderNav';
 import logo from '../../images/white-bird-on-black.png';
 
@@ -18,7 +18,7 @@ const PageHeader = (props) => {
   } = props;
   return (
     <header>
-      <a className="homepage-link">
+      <div className="homepage-link">
         <img
           className="desktop-logo"
           src={logo}
@@ -27,7 +27,7 @@ const PageHeader = (props) => {
           height="42"
         />
         <h1 className="little-help-book">Little Help Book</h1>
-      </a>
+      </div>
 
       <div className="description">Human Services Resource Directory</div>
 
@@ -56,10 +56,9 @@ const PageHeader = (props) => {
 
         <div className="header-nav-item search">
           <input
-            type="image"
+            type="search"
             src="../images/search-24px.svg"
             className="search-toggle"
-            type="search"
           />
         </div>
       </nav>

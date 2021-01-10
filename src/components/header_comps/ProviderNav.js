@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CityBox from './CityBox';
 import CategoryBox from './CategoryBox';
 import SubcategoryBox from './SubcategoryBox';
 
-const cityboxId = "citySelect";
-const catboxId = "catSelect";
-const subcatboxId = "subcatSelect";
+//const cityboxId = "citySelect";
+//const catboxId = "catSelect";
+//const subcatboxId = "subcatSelect";
 
 const ProviderNav = (props) => {
 	let { cities,
@@ -94,7 +94,7 @@ const ProviderNav = (props) => {
 						selectedItems.subcategory),
 					selectedItems.category), 
 				selectedItems.city)
-			);
+		);
 	}
 
 	// The event that's called when the cityBox value changes.
